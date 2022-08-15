@@ -31,6 +31,7 @@ else:
 
 ml = Melden()
 updater = Updater(TOKEN)
+user_id = "872679970"
 
 
 def send_message(update:Update, context:CallbackContext):
@@ -41,17 +42,16 @@ is_site_closed = 0
 def check_site_reply():
     global is_site_open, is_site_closed, updater, ml
     if not ml.checkSite("https://www.ecsc.gov.sy/"):
-        print("closed")
+        print("closed - check_site_reply")
         if not is_site_closed:
-            updater.bot.sendMessage(chat_id='872679970', text='Site is Closed')
-            print("closed")
+            updater.bot.sendMessage(chat_id=user_id, text='Site is Closed')
             is_site_closed = 1
             is_site_open = 0
         return False
     else:
-        print("open")
+        print("open - check_site_reply")
         if not is_site_open:
-            updater.bot.sendMessage(chat_id='872679970', text='Site is Open')
+            updater.bot.sendMessage(chat_id=user_id, text='Site is Open')
             is_site_open = 1
             is_site_closed = 0
         return True
@@ -62,15 +62,15 @@ is_doc_closed = 0
 def check_doc_reply():
     global is_doc_open, is_doc_closed, updater, ml
     if not ml.checkDocument():
-        print("closed")
+        print("closed - check_doc_reply")
         if not is_doc_closed:
-            updater.bot.sendMessage(chat_id='872679970', text='Unfortuinatly, Making Document is Closed Again')
+            updater.bot.sendMessage(chat_id=user_id, text='Unfortuinatly, Making Document is Closed Again')
             is_doc_closed = 1
             is_doc_open = 0
     else:
-        print("open")
+        print("open - check_doc_reply")
         if not is_doc_open:
-            updater.bot.sendMessage(chat_id='872679970', text='Quickly! You Can Make Document')
+            updater.bot.sendMessage(chat_id=user_id, text='Quickly! You Can Make Document')
             is_doc_open = 1
             is_doc_closed = 0
 
@@ -86,7 +86,7 @@ def check_ecsc():
 
     except Exception as error:
         print(error)
-        updater.bot.sendMessage(chat_id='872679970', text=error)
+        updater.bot.sendMessage(chat_id=user_id, text=error)
 
     time.sleep(5)
 
@@ -97,7 +97,7 @@ def make_document(update:Update, context:CallbackContext):
         personal_number = text[1]
         password = text[2]
     except Exception as error:
-        updater.bot.sendMessage(chat_id='872679970', text='Incorrect Input')
+        updater.bot.sendMessage(chat_id=user_id, text='Incorrect Input')
 
     try:
         ml2 = Melden()
@@ -105,12 +105,12 @@ def make_document(update:Update, context:CallbackContext):
         ml2.login(personal_number, password)
         ml2.checkDocument()
         ml2.makeDocument()
-        updater.bot.sendMessage(chat_id='872679970', text='Document has been created')
+        updater.bot.sendMessage(chat_id=user_id, text='Document has been created')
 
     except Exception as error:
         print("=== ml2 error ===")
         print(error)
-        updater.bot.sendMessage(chat_id='872679970', text='Sorry, Can not make document')
+        updater.bot.sendMessage(chat_id=user_id, text='Sorry, Can not make document')
 
 
 # def start_check_ecsc_thread():

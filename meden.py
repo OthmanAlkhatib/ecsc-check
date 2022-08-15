@@ -29,6 +29,7 @@ class Melden:
     def check(self):
         for i in range(20) :
             if self.searchElement("div[role='alertdialog']"):
+                print("error box fount")
                 return False
             time.sleep(0.5)
             print(i)
@@ -38,6 +39,7 @@ class Melden:
         try:
             self.driver.get(url)
         except Exception as error:
+            print("can not open site")
             return False
         return self.check()
 
