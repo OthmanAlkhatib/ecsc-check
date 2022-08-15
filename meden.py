@@ -1,7 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
-import pandas as pd
 import os
 
 login_url = "https://www.ecsc.gov.sy/login"

@@ -3,9 +3,9 @@ from telegram import Update
 import os
 import logging
 import sys
-import threading
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+# import threading
+# from selenium import webdriver
+# from selenium.webdriver.common.by import By
 from meden import Melden
 import time
 
